@@ -117,7 +117,11 @@ namespace Disconnect
 
         private void cmdDelete_Click(object sender, EventArgs e)
         {
-            
+            string code;
+            code = txtCode.Text;
+            dr = hRDataSet1.Tables["empdetails"].Rows.Find(code);
+            dr.Delete();
+            empdetailsTableAdapter.Update(hRDataSet1);
         }
     }
 }
