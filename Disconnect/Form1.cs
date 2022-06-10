@@ -49,7 +49,44 @@ namespace Disconnect
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            
+            cmdSave.Enabled = true;
+            txtName.Enabled = true;
+            txtAddress.Enabled = true;
+            txtState.Enabled = true;
+            txtCountry.Enabled = true;
+            cbDesignation.Enabled = true;
+            cbDepartment.Enabled = true;
+            txtName.Text = "";
+            txtAddress.Text = "";
+            txtState.Text = "";
+            txtCountry.Text = "";
+            cbDesignation.Text = "";
+            cbDepartment.Text = "";
+            int ctr, len;
+            string codeval;
+            dt = hRDataSet1.Tables["empdetails"];
+            len = dt.Rows.Count - 1;
+            dr = dt.Rows[len];
+            code = dr["ccode"].ToString();
+            codeval = code.Substring(1, 3);
+            ctr = Convert.ToInt32(codeval);
+            if ((ctr >= 1) && (ctr < 9))
+            {
+                ctr = ctr + 1;
+                txtCode.Text = "C00" + ctr;
+            }
+            else if ((ctr >= 9) && (ctr < 99))
+            {
+                ctr = ctr + 1;
+                txtCode.Text = "C0" + ctr;
+            }
+            else if (ctr >= 99)
+            {
+                ctr = ctr + 1;
+                txtCode.Text = "C" + ctr;
+            }
+
+            cmdAdd.Enabled = false;
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
@@ -59,7 +96,7 @@ namespace Disconnect
 
         private void cmdDelete_Click(object sender, EventArgs e)
         {
-            
+           
         }
     }
 }
